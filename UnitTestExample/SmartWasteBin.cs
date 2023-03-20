@@ -57,6 +57,12 @@ namespace UnitTestExample
 		}
 		return message;
 	}
+
+	public bool ThrowGarbage(Garbage garbage)
+	{
+		Garbages.Add(garbage);
+		return true;
+	}
 }
 
 	
