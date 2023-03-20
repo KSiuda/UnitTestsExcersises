@@ -1,3 +1,4 @@
+using SmartCity;
 using UnitTestExample;
 
 namespace NUnitTests
@@ -10,33 +11,16 @@ namespace NUnitTests
 		}
 
 		[Test]
-		public void Compact_DoesntWork_ForBetonGarbageType()
+        [TestCase(GarbageType.BETON), TestCase(GarbageType.RURA)]
+        public void Compact_DoesntWork_ForBetonGarbageType(GarbageType type)
 		{
 			//Arrange
 			var bin = new SmartWasteBin(true);
-			var garbageType = "bEton";
+			var garbageType = type;
 			var wynik = bin.Compact(garbageType);
 
 			//Assert
 			Assert.AreEqual(false,wynik);
 		}
-
-		[Test]
-		public void Compact_DoesntWork_ForRuraGarbageType()
-		{
-			//Arrange
-			var bin = new SmartWasteBin(true);
-			var garbageType = "rura";
-			var wynik = bin.Compact(garbageType);
-
-			//Assert
-			Assert.AreEqual(false, wynik);
-		}
-
-		[Test]
-		public void Test2()
-		{
-
-		}
-	}
+    }
 }
