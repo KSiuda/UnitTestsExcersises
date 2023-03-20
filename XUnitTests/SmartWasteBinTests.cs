@@ -32,5 +32,28 @@ namespace XUnitTests
             //Assert
             Assert.True(wynik);
         }
+
+        [Fact]
+        public void CanCleanEmptyBin()
+        {
+            //arrange
+            var bin = new SmartWasteBin(false);
+            var result = bin.Clean();
+
+            //assert
+            Assert.Equal("CLEANED", result);
+        }
+
+        [Fact]
+        public void CantCleanNonEmptyBin()
+        {
+            //arrange
+            var bin = new SmartWasteBin(false);
+            bin.ThrowGarbage(new Garbage(GarbageType.BETON));
+            var result = bin.Clean();
+
+            //assert
+            Assert.Equal("CAN'T CLEAN", result);
+        }
     }
 }
