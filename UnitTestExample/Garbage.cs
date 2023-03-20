@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartCity
 {
-	internal class Garbage
+	public class Garbage
 	{
 		public GarbageType GarbageType { get; private set; }
 		public Garbage() { }
