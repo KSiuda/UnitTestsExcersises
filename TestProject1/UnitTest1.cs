@@ -1,5 +1,3 @@
-
-
 using SmartCity;
 using UnitTestExample;
 
