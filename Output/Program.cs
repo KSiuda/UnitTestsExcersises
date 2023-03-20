@@ -1,13 +1,11 @@
-﻿using UnitTestExample;
-
-namespace Output
+﻿namespace Output
 {
 	internal class Program
 	{
 		static void Main(string[] args)
-		{
-			var city = new SmartCity();
-			city.Do();
+        {
+            var city = new UnitTestExample.SmartCity();
+            city.Do();
 		}
 	}
 }
