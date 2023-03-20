@@ -8,7 +8,7 @@ namespace UnitTestExample
 
 		public string ErrorMessage { get; set; }
 
-		private List<Garbage> Garbages { get; set; }
+		private List<Garbage> Garbages { get; set; } = new List<Garbage>();
 	
 
 	public SmartWasteBin(bool compactor)
