@@ -1,3 +1,4 @@
+using SmartCity;
 using UnitTestExample;
 
 namespace NUnitTests
@@ -14,7 +15,7 @@ namespace NUnitTests
 		{
 			//Arrange
 			var bin = new SmartWasteBin(true);
-			var garbageType = "bEton";
+			var garbageType = GarbageType.BETON;
 			var wynik = bin.Compact(garbageType);
 
 			//Assert
@@ -26,7 +27,7 @@ namespace NUnitTests
 		{
 			//Arrange
 			var bin = new SmartWasteBin(true);
-			var garbageType = "rura";
+			var garbageType = GarbageType.RURA;
 			var wynik = bin.Compact(garbageType);
 
 			//Assert
