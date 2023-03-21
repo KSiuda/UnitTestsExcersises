@@ -1,3 +1,4 @@
+using System.Runtime.ExceptionServices;
 using SmartCity;
 using UnitTestExample;
 
@@ -5,6 +6,14 @@ namespace XUnitTests
 {
     public class SmartWasteBinTests
     {
+
+        public static IEnumerable<Object[]> GarbageTypes()
+        {
+            foreach (var garbageType in Enum.GetValues(typeof(GarbageType)))
+            {
+                yield return new[] { garbageType};
+            }
+        }
 
         [Theory]
         [InlineData(GarbageType.BETON)]
@@ -34,11 +43,7 @@ namespace XUnitTests
         }
 
         [Theory]
-        [InlineData(GarbageType.BETON)]
-        [InlineData(GarbageType.RURA)]
-        [InlineData(GarbageType.MJENSKO)]
-        [InlineData(GarbageType.PAPIER)]
-        [InlineData(GarbageType.SZMATKA)]
+        [MemberData(nameof(GarbageTypes))]
         public void Compact_DoesWork_ForCompactorFalse(GarbageType garbageType)
         {
             //Arrange
@@ -79,11 +84,7 @@ namespace XUnitTests
         }
 
         [Theory]
-        [InlineData(GarbageType.MJENSKO)]
-        [InlineData(GarbageType.PAPIER)]
-        [InlineData(GarbageType.SZMATKA)]
-        [InlineData(GarbageType.BETON)]
-        [InlineData(GarbageType.RURA)]
+        [MemberData(nameof(GarbageTypes))]
         public void CanThrowGarbage(GarbageType garbageType)
         {
             //Arrange
@@ -101,11 +102,7 @@ namespace XUnitTests
 
 
         [Theory]
-        [InlineData(GarbageType.MJENSKO)]
-        [InlineData(GarbageType.PAPIER)]
-        [InlineData(GarbageType.SZMATKA)]
-        [InlineData(GarbageType.BETON)]
-        [InlineData(GarbageType.RURA)]
+        [MemberData(nameof(GarbageTypes))]
         public void CanEmptyGarbage(GarbageType garbageType)
         {
             Garbage garbage = new(garbageType);
