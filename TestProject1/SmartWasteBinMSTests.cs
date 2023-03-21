@@ -1,10 +1,10 @@
 using SmartCity;
 using UnitTestExample;
 
-namespace MStest
+namespace MSTests
 {
     [TestClass]
-    public class UnitTest1
+    public class SmartWasteBinMSTests
     {
         public TestContext TestContext { get; set; }
         private static TestContext _testContext;

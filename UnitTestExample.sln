@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTests", "NUnitTests\NU
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{118F7F1E-E1B6-45FC-B070-D2B3ADA31C95}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject1\TestProject1.csproj", "{AA4C3068-3DEF-487A-AB18-695A0C97993B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSTests", "TestProject1\MSTests.csproj", "{AA4C3068-3DEF-487A-AB18-695A0C97993B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XunitTests", "Xunit\XunitTests.csproj", "{FC9EF30B-B349-4128-8774-57A0789A3560}"
 EndProject
