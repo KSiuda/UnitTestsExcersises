@@ -33,6 +33,22 @@ namespace XUnitTests
             Assert.True(wynik);
         }
 
+        [Theory]
+        [InlineData(GarbageType.BETON)]
+        [InlineData(GarbageType.RURA)]
+        [InlineData(GarbageType.MJENSKO)]
+        [InlineData(GarbageType.PAPIER)]
+        [InlineData(GarbageType.SZMATKA)]
+        public void Compact_DoesWork_ForCompactorFalse(GarbageType garbageType)
+        {
+            //Arrange
+            var bin = new SmartWasteBin(false);
+            var wynik = bin.Compact(garbageType);
+
+            //Assert
+            Assert.False(wynik);
+        }
+
         [Fact]
         public void CanCleanEmptyBin()
         {
