@@ -39,7 +39,7 @@ namespace XUnitTests
         [InlineData(GarbageType.MJENSKO)]
         [InlineData(GarbageType.PAPIER)]
         [InlineData(GarbageType.SZMATKA)]
-        public void Compact_DoesWork_ForCompactorFalse(GarbageType garbageType)
+        public void Compact_DoesntWork_ForCompactorFalse(GarbageType garbageType)
         {
             //Arrange
             var bin = new SmartWasteBin(false);
