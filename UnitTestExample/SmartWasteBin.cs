@@ -2,68 +2,66 @@
 
 namespace UnitTestExample
 {
-	public class SmartWasteBin
-	{
-		public bool Compactor { get; set; }
+    public class SmartWasteBin
+    {
+        public bool Compactor { get; set; }
 
-		public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; }
 
-		private List<Garbage> Garbages { get; set; } = new List<Garbage>();
-	
+        private List<Garbage> Garbages { get; set; } = new List<Garbage>();
 
-	public SmartWasteBin(bool compactor)
-	{
-		Compactor = compactor;
-	}
 
-	public bool Compact(GarbageType garbageType)
-	{
-		if (!Compactor) return false;
+        public SmartWasteBin(bool compactor)
+        {
+            Compactor = compactor;
+        }
 
-		if (garbageType == GarbageType.BETON)
-		{
-			return false;
-		}
-		else if (garbageType == GarbageType.RURA)
-		{
-			ErrorMessage = "Rury to nie tutaj";
-			return false;
-		}
+        public bool Compact(GarbageType garbageType)
+        {
+            if (!Compactor) return false;
 
-		return true;
-	}
+            if (garbageType == GarbageType.BETON)
+            {
+                return false;
+            }
+            else if (garbageType == GarbageType.RURA)
+            {
+                ErrorMessage = "Rury to nie tutaj";
+                return false;
+            }
 
-	public void Empty()
-	{
-		if (Garbages.Any())
-		{
-			Garbages.ForEach(x => { x.Remove();});
-		}
+            return true;
+        }
 
-		if (Garbages.Any(x => x.GarbageType is GarbageType.BETON or GarbageType.RURA))
-		{
-			return;
-		}
+        public void Empty()
+        {
+            if (Garbages.Any())
+            {
+                Garbages.ForEach(x => { x.Remove(); });
+            }
 
-		Garbages.Clear();
-	}
+            if (Garbages.Any(x => x.GarbageType is GarbageType.BETON or GarbageType.RURA))
+            {
+                return;
+            }
 
-	public string Clean()
-	{
-		var message = "CLEANED";
-		if (Garbages.Any())
-		{
-			message = "CAN'T CLEAN";
-		}
-		return message;
-	}
+            Garbages.Clear();
+        }
 
-	public bool ThrowGarbage(Garbage garbage)
-	{
-		Garbages.Add(garbage);
-		return true;
-	}
-}
+        public string Clean()
+        {
+            var message = "CLEANED";
+            if (Garbages.Any())
+            {
+                message = "CAN'T CLEAN";
+            }
+            return message;
+        }
 
-	
+        public bool ThrowGarbage(Garbage garbage)
+        {
+            Garbages.Add(garbage);
+            return true;
+        }
+    }
 }

@@ -62,16 +62,15 @@ namespace NUnitTests
         }
 
         [TestCaseSource(nameof(CorrectGarbageTypes))]
-        public void Empty_Work_Empty(GarbageType type1, GarbageType type2, GarbageType type3)
+        public void Empty_Work_CleanedBin(GarbageType[] garbageTypes)
         {
             var bin = new SmartWasteBin(true);
-            var garbage1 = new Garbage(type1);
-            var garbage2 = new Garbage(type2);
-            var garbage3 = new Garbage(type3);
 
-            bin.ThrowGarbage(garbage1);
-            bin.ThrowGarbage(garbage2);
-            bin.ThrowGarbage(garbage3);
+            foreach (var garbageType in garbageTypes)
+            {
+                bin.ThrowGarbage(new Garbage(garbageType));
+            }
+
             bin.Empty();
 
             var result = bin.Clean();
@@ -80,14 +79,15 @@ namespace NUnitTests
         }
 
         [TestCaseSource(nameof(IncorrectGarbageTypes))]
-        public void Empty_DosentWork_Empty(GarbageType type1, GarbageType type2)
+        public void Empty_DosentWork_DirtyBin(GarbageType[] garbageTypes)
         {
             var bin = new SmartWasteBin(true);
-            var garbage1 = new Garbage(type1);
-            var garbage2 = new Garbage(type2);
 
-            bin.ThrowGarbage(garbage1);
-            bin.ThrowGarbage(garbage2);
+            foreach (var garbageType in garbageTypes)
+            {
+                bin.ThrowGarbage(new Garbage(garbageType));
+            }
+
             bin.Empty();
 
             var result = bin.Clean();
