@@ -29,7 +29,7 @@ namespace XUnitTests
         [Theory]
         [InlineData(GarbageType.BETON, false)]
         [InlineData(GarbageType.RURA, true)]
-        public void Error_message_SetCorrectly(GarbageType type, bool expectedResult)
+        public void ErrorMessage_SetCorrectly(GarbageType type, bool expectedResult)
         {
             //Arrange
             bin.Compact(type);
@@ -44,7 +44,7 @@ namespace XUnitTests
             bin.Compactor = false;
             var result = bin.Compact(GarbageType.BETON);
 
-            Assert.Equal(false, result);
+            Assert.False(result);
         }
 
         [Theory]
@@ -77,6 +77,4 @@ namespace XUnitTests
             Assert.Equal(expectedResult, result);
         }
     }
-
-    //CLEANED
 }
