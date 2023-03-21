@@ -50,7 +50,7 @@ namespace XUnitTests
         }
 
         [Fact]
-        public void CanCleanEmptyBin()
+        public void Clean_DoesWork_ForEmptyBin()
         {
             //arrange
             var bin = new SmartWasteBin(false)
@@ -64,7 +64,7 @@ namespace XUnitTests
         }
 
         [Fact]
-        public void CantCleanNonEmptyBin()
+        public void Clean_DoesntWork_ForNonEmptyBin()
         {
             //arrange
             var bin = new SmartWasteBin(false)
@@ -84,7 +84,7 @@ namespace XUnitTests
         [InlineData(GarbageType.SZMATKA)]
         [InlineData(GarbageType.BETON)]
         [InlineData(GarbageType.RURA)]
-        public void CanThrowGarbage(GarbageType garbageType)
+        public void ThrowGarbage_DoesWork_ForAllGarbageTypes(GarbageType garbageType)
         {
             //Arrange
             Garbage garbage = new(garbageType);
@@ -98,15 +98,13 @@ namespace XUnitTests
             Assert.True(bin.Garbages.Any() && bin.Garbages.All(x => x.GarbageType == garbageType));
         }
 
-
-
         [Theory]
         [InlineData(GarbageType.MJENSKO)]
         [InlineData(GarbageType.PAPIER)]
         [InlineData(GarbageType.SZMATKA)]
         [InlineData(GarbageType.BETON)]
         [InlineData(GarbageType.RURA)]
-        public void CanEmptyGarbage(GarbageType garbageType)
+        public void Empty_DoesWork_ForCorrectGarbageTypes(GarbageType garbageType)
         {
             Garbage garbage = new(garbageType);
             var bin = new SmartWasteBin(true)
