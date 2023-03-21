@@ -39,7 +39,7 @@ namespace XUnitTests
         [InlineData(GarbageType.MJENSKO)]
         [InlineData(GarbageType.PAPIER)]
         [InlineData(GarbageType.SZMATKA)]
-        public void Compact_DoesntWork_ForCompactorFalse(GarbageType garbageType)
+        public void Compact_DoesWork_ForCompactorFalse(GarbageType garbageType)
         {
             //Arrange
             var bin = new SmartWasteBin(false);
@@ -53,7 +53,10 @@ namespace XUnitTests
         public void CanCleanEmptyBin()
         {
             //arrange
-            var bin = new SmartWasteBin(false);
+            var bin = new SmartWasteBin(false)
+            {
+                Garbages = new List<Garbage>()
+            };
             var result = bin.Clean();
 
             //assert
@@ -64,12 +67,55 @@ namespace XUnitTests
         public void CantCleanNonEmptyBin()
         {
             //arrange
-            var bin = new SmartWasteBin(false);
+            var bin = new SmartWasteBin(false)
+            {
+                Garbages = new List<Garbage>()
+            };
             bin.ThrowGarbage(new Garbage(GarbageType.BETON));
             var result = bin.Clean();
 
             //assert
             Assert.Equal("CAN'T CLEAN", result);
+        }
+
+        [Theory]
+        [InlineData(GarbageType.MJENSKO)]
+        [InlineData(GarbageType.PAPIER)]
+        [InlineData(GarbageType.SZMATKA)]
+        [InlineData(GarbageType.BETON)]
+        [InlineData(GarbageType.RURA)]
+        public void CanThrowGarbage(GarbageType garbageType)
+        {
+            //Arrange
+            Garbage garbage = new(garbageType);
+            var bin = new SmartWasteBin(true)
+            {
+                Garbages = new List<Garbage>()
+            };
+            bin.ThrowGarbage(garbage);
+
+            //Assert
+            Assert.True(bin.Garbages.Any() && bin.Garbages.All(x => x.GarbageType == garbageType));
+        }
+
+
+
+        [Theory]
+        [InlineData(GarbageType.MJENSKO)]
+        [InlineData(GarbageType.PAPIER)]
+        [InlineData(GarbageType.SZMATKA)]
+        [InlineData(GarbageType.BETON)]
+        [InlineData(GarbageType.RURA)]
+        public void CanEmptyGarbage(GarbageType garbageType)
+        {
+            Garbage garbage = new(garbageType);
+            var bin = new SmartWasteBin(true)
+            {
+                Garbages = new List<Garbage>()
+            };
+            bin.Empty();
+
+            Assert.True(bin.Garbages.All(x => x.GarbageType is GarbageType.BETON or GarbageType.RURA));
         }
     }
 }
