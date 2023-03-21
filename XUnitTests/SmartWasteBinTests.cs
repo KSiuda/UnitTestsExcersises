@@ -7,7 +7,7 @@ namespace XUnitTests
     public class SmartWasteBinTests
     {
 
-        public static IEnumerable<Object[]> GarbageTypes()
+        public static IEnumerable<Object[]> GetGarbageTypes()
         {
             foreach (var garbageType in Enum.GetValues(typeof(GarbageType)))
             {
@@ -43,7 +43,7 @@ namespace XUnitTests
         }
 
         [Theory]
-        [MemberData(nameof(GarbageTypes))]
+        [MemberData(nameof(GetGarbageTypes))]
         public void Compact_DoesWork_ForCompactorFalse(GarbageType garbageType)
         {
             //Arrange
@@ -84,7 +84,7 @@ namespace XUnitTests
         }
 
         [Theory]
-        [MemberData(nameof(GarbageTypes))]
+        [MemberData(nameof(GetGarbageTypes))]
         public void CanThrowGarbage(GarbageType garbageType)
         {
             //Arrange
@@ -102,7 +102,7 @@ namespace XUnitTests
 
 
         [Theory]
-        [MemberData(nameof(GarbageTypes))]
+        [MemberData(nameof(GetGarbageTypes))]
         public void CanEmptyGarbage(GarbageType garbageType)
         {
             Garbage garbage = new(garbageType);
