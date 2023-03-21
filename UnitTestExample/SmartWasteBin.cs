@@ -14,6 +14,7 @@ namespace UnitTestExample
 	public SmartWasteBin(bool compactor)
 	{
 		Compactor = compactor;
+		Garbages = new List<Garbage>();
 	}
 
 	public bool Compact(GarbageType garbageType)

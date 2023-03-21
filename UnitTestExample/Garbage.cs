@@ -9,7 +9,11 @@ namespace SmartCity
 	public class Garbage
 	{
 		public GarbageType GarbageType { get; private set; }
-		public Garbage() { }
+
+        public Garbage(GarbageType garbageType)
+        {
+			GarbageType = garbageType;
+        }
 
 		public void Remove()
 		{

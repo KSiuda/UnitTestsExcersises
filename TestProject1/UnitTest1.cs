@@ -1,9 +1,7 @@
-
-
 using SmartCity;
 using UnitTestExample;
 
-namespace MSTests
+namespace MStest
 {
     [TestClass]
     public class UnitTest1
@@ -12,27 +10,18 @@ namespace MSTests
         public void Setup()
         {
         }
-        [TestMethod]
-        public void Compact_DoesntWork_ForBetonGarbageType()
+        [DataTestMethod]
+        [DataRow(GarbageType.BETON)]
+        [DataRow(GarbageType.RURA)]
+        public void Compact_DoesntWork_ForGarbageType(GarbageType type)
         {
             //Arrange
             var bin = new SmartWasteBin(true);
-            var garbageType = GarbageType.BETON;
-            var wynik = bin.Compact(garbageType);
+            var garbageType = type;
+            var result = bin.Compact(garbageType);
 
             //Assert
-            Assert.AreEqual(false, wynik);
-        }
-        [TestMethod]
-        public void Compact_DoesntWork_ForRuraGarbageType()
-        {
-            //Arrange
-            var bin = new SmartWasteBin(true);
-            var garbageType = GarbageType.RURA;
-            var wynik = bin.Compact(garbageType);
-
-            //Assert
-            Assert.AreEqual(false, wynik);
+            Assert.AreEqual(false, result);
         }
 
     }
